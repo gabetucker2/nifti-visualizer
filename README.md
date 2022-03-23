@@ -18,6 +18,6 @@ E) Ensure the following libraries are installed (using `pip install LIBRARYNAMEH
   3) `numpy`
   4) `matplotlib`
 
-F) Run dimView.py from your command prompt (PowerShell or CMD)
+F) Run dimView.py from your command prompt (e.g., `cd MASTERFOLDERLOCATION`, then `py dimView.py` from PowerShell or CMD)
 
 With any questions, please contact `tucker.854@osu.edu`

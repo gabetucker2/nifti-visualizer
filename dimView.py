@@ -81,11 +81,26 @@ xSqueeze = 0.75
 ySqueeze = 0.5
 
 
-#def getCoord():
-#    def main(newVoxelCoord, max):
-#    
-#    def x():
-
+def getCoord(coordType, axis):
+    squeezeFactor = -1
+    if coordType == "x":
+        squeezeFactor = xSqueeze
+    elif coordType == "y":
+        squeezeFactor = ySqueeze
+    
+    nv = -1
+    max = -1
+    if axis == "x":
+        nv = newVoxel.x
+        max = maxX
+    elif axis == "y":
+        nv = newVoxel.y
+        max = maxY
+    elif axis == "z":
+        nv = newVoxel.z
+        max = maxZ
+    
+    return ((nv / max) * squeezeFactor) + ((1 - squeezeFactor) * 0.5)
 
 #repeatedly slice
 while loop:
@@ -100,18 +115,18 @@ while loop:
             if d == 0:
                 thisSlice = fData[newVoxel.x, :, :, 0]
                 plt.title("Saggital (x)")
-                xCoord = ((newVoxel.y / maxY) * xSqueeze) + ((1 - xSqueeze) * 0.5)
-                yCoord = ((newVoxel.z / maxZ) * ySqueeze) + ((1 - ySqueeze) * 0.5)
+                xCoord = getCoord("x", "y")
+                yCoord = getCoord("y", "z")
             elif d == 1:
                 thisSlice = fData[:, newVoxel.y, :, 0]
                 plt.title("Coronal (y)")
-                xCoord = ((newVoxel.x / maxX) * xSqueeze) + ((1 - xSqueeze) * 0.5)
-                yCoord = ((newVoxel.z / maxZ) * ySqueeze) + ((1 - ySqueeze) * 0.5)
+                xCoord = getCoord("x", "x")
+                yCoord = getCoord("y", "z")
             elif d == 2:
                 thisSlice = fData[:, :, newVoxel.z, 0]
                 plt.title("Transverse (z)")
-                xCoord = ((newVoxel.x / maxX) * xSqueeze) + ((1 - xSqueeze) * 0.5)
-                yCoord = ((newVoxel.y / maxY) * ySqueeze) + ((1 - ySqueeze) * 0.5)
+                xCoord = getCoord("x", "x")
+                yCoord = getCoord("y", "y")
             if len(artists) == 6:
                 for _i in range(2):
                     artists[0].remove()

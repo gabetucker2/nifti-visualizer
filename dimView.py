@@ -80,6 +80,13 @@ artists = []
 xSqueeze = 0.75
 ySqueeze = 0.5
 
+
+#def getCoord():
+#    def main(newVoxelCoord, max):
+#    
+#    def x():
+
+
 #repeatedly slice
 while loop:
     newVoxel = voxel(sliderX.get(), sliderY.get(), sliderZ.get())
